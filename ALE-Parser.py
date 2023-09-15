@@ -8,8 +8,7 @@ Writes pandas dataframe to ALE file retattaching the ALE header.
 
 
 import pandas as pd
-import time
-from datetime import datetime
+
 
 
 # Path to ALE file <- Change this to your ALE file
