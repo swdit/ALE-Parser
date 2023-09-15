@@ -85,3 +85,7 @@ ale_write_parser(df, headerdict, save_path_and_name)
 ```
 
 This script demonstrates how to read an ALE file into a header dictionary and a pandas dataframe, and then write this data back to a new ALE file.
+
+## Known Issues
+Pandas might interpret numbers as floats and write them back with dot zero.
+`Take 1 -> Take 1.0`
