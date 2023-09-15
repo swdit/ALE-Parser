@@ -67,18 +67,21 @@ The script includes error handling to validate the format of the ALE file during
 
 ## Example Usage
 
-`python
+```python
 # Path to the ALE file
 ale_path = "your_ale_path.ale"
 
 # Read the ALE file
 headerdict, df = ale_read_parser(ale_path)
 
+# alter the dataframe here
+df = df.drop(df.index[3, 4, 5])
+
 # Define the save path and name
 save_path_and_name = "path_to_save.ale"
 
 # Write the data to a new ALE file
 ale_write_parser(df, headerdict, save_path_and_name)
-`
+```
 
 This script demonstrates how to read an ALE file into a header dictionary and a pandas dataframe, and then write this data back to a new ALE file.
