@@ -10,9 +10,8 @@ This script parses ALE (Avid Log Exchange) files and allows for the reading and 
 
 To install these dependencies, use the following command:
 
-\```bash
-pip install pandas
-\```
+
+`pip install pandas`
 
 ## Usage
 
@@ -20,9 +19,9 @@ pip install pandas
 
 Set up the path to your ALE file by modifying the `ale_path` variable:
 
-\```python
+`python
 ale_path = "your_ale_path.ale"
-\```
+`
 
 ### Function 1: ale_read_parser
 
@@ -32,9 +31,9 @@ Reads an ALE file and splits it into a header dictionary and a pandas dataframe.
 
 #### Syntax
 
-\```python
+`python
 ale_read_parser(ale_file)
-\```
+`
 
 #### Parameters
 
@@ -52,9 +51,9 @@ Writes a pandas dataframe and a header dictionary to an ALE file.
 
 #### Syntax
 
-\```python
+`python
 ale_write_parser(df, headerdict, save_path_and_name)
-\```
+`
 
 #### Parameters
 
@@ -68,7 +67,7 @@ The script includes error handling to validate the format of the ALE file during
 
 ## Example Usage
 
-\```python
+`python
 # Path to the ALE file
 ale_path = "your_ale_path.ale"
 
@@ -80,6 +79,6 @@ save_path_and_name = "path_to_save.ale"
 
 # Write the data to a new ALE file
 ale_write_parser(df, headerdict, save_path_and_name)
-\```
+`
 
 This script demonstrates how to read an ALE file into a header dictionary and a pandas dataframe, and then write this data back to a new ALE file.
