@@ -102,7 +102,7 @@ def ale_read_parser(ale_file): #provide file (filepath) of the ale file as argum
     def ale_parser_data(ale_file):
         # Read in Pandas-Dataframe from ALE; Headers in Line 8, Data beginning in Line 11, Delimiter is Tab, skip Lines 1,2,3,4,5,6,7,9,10
         skiprows = [0, 1, 2, 3, 4, 5, 6, 8, 9]
-        df = pd.read_csv(ale_file, sep='\t', skiprows=skiprows)
+        df = pd.read_csv(ale_file, sep='\t', skiprows=skiprows, dtype=str) # dtype=str to prevent pandas from converting numbers to float
         df.head()
         return df
 
