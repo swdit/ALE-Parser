@@ -8,7 +8,7 @@
 .DS_Store
 
 # Ignore INT
-ALE-Parser_INT.py
+ALE_Parser_INT.py
 
 # Ignore Test-Files
 Test-Files/
