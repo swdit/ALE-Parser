@@ -23,7 +23,6 @@ Writer
 """
 import pandas as pd
 from datetime import datetime
-from printme import printme
 import subprocess
 
 # get current time as string for individual file naming
@@ -33,7 +32,7 @@ curts = datetime.now().strftime("%H%M%S")
 # FUNCTION 1: Read ALE file into pandas dataframe and headerdict
 def ale_read_parser(ale_file): #provide file (filepath) of the ale file as argument
     if not ale_file.split(".")[-1] == "ale":
-        printme (ale_file.split(".")[-1])
+        ale_file.split(".")[-1]
         print(f"Error reading file {ale_file} - This is not a valid ALE-File")
         exit()
     with open (ale_file, 'r') as ale: # First Read of the Original ALE and Check for Delimiter Status
@@ -103,16 +102,12 @@ def ale_rewrite(ale_path, delim, headerdict, dataframe):
     # Combine the subfolder path and the new filename to get the new file path
     new_ale_path = subfolder_path + "/" + new_filename
 
-    printme(new_ale_path)
-
     with open(new_ale_path, 'w') as ale:
         # Write headerdict excluding last line
-        printme(headerdict)
         for key in headerdict:
-            printme(headerdict[key])
             if "Data" in headerdict[key]:
                 break
-            print ("HD WRITER", ale.write(headerdict[key]))
+            ale.write(headerdict[key])
 
         # Write column names of dataframe
         ale.write(delim.join(dataframe.columns) + "\n")
