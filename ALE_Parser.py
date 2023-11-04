@@ -5,24 +5,22 @@ ALE (Avid Log Exchange) Parser
 Generates pandas data Frame from ALE file that can be treated like a usual tab delimited csv file.
 Writes pandas dataframe to ALE file reattaching the ALE header.
 
-Parse ALEs better
-Reader
+Parse ALEs:
+Reader:
 - find all Lines that start with only two columns (headerdict)
 - check for delimiter
 - remember line number
 - make sure everything is being read as string (no int, no float)
 
-Writer
+Writer:
 - write headerdict (lines with only two columns)
 - write column names of dataframe
 - write "Data" line
 - write content of dataframe excluding column names
-
-
-
 """
-import pandas as pd
+
 from datetime import datetime
+import pandas as pd
 import subprocess
 
 # get current time as string for individual file naming
