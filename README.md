@@ -73,27 +73,30 @@ The script includes error handling to validate the format of the ALE file during
 
 ```python
 # Path to the ALE file
-ale_path = "your_ale_path.ale"
 
-# Read the ALE file
-headerdict, df = ale_read_parser(ale_path)
+from ALE_Parser import ale_read_parser, ale_rewrite
+import printme
 
-# alter the dataframe here
-df = df.drop(df.index[3, 4, 5])
+file = "your_ale_path.ale"
 
-# Define the save path and name
-save_path_and_name = "path_to_save.ale"
+print("executing ale_read_parser")
+delim, headerdict, dataframe, ale_file = (ale_read_parser(file)) # get main variables from read in function:
 
-# Write the data to a new ALE file
-ale_write_parser(df, headerdict, save_path_and_name)
+print("Returns from ale_read_parser:")
+printme(delim)
+printme(headerdict)
+printme(dataframe)
+printme(ale_file)
+
+
+# write new ale file
+print("executing ale_rewrite")
+ale_rewrite(ale_file, delim, headerdict, dataframe)
 ```
 
 This script demonstrates how to read an ALE file into a header dictionary and a pandas dataframe, and then write this data back to a new ALE file.
 
 ## Known Issues
 
-1. Pandas might interpret numbers as floats and write them back with dot zero.
-`Take 1 -> Take 1.0`
-
-2. If the ALE Header does not contain "AUDIO_FORMAT" on index 3 the ALE is treated as invalid an the script will stop.
+- The script does not currently support the reading and writing of ALE files with multiple tables.
 
