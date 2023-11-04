@@ -6,22 +6,19 @@ This script parses ALE (Avid Log Exchange) files and allows for the reading and 
 ## Dependencies
 
 - pandas
+- printme (custom - included in this repository)
+- colorama
 
 
 To install these dependencies, use the following command:
 
 
 `pip install pandas`
+`pip install colorama`
 
 ## Usage
 
-### Setting up the ALE File Path
 
-Set up the path to your ALE file by modifying the `ale_path` variable:
-
-`python
-ale_path = "your_ale_path.ale"
-`
 
 ### Function 1: ale_read_parser
 
@@ -31,7 +28,7 @@ Reads an ALE file and splits it into a header dictionary and a pandas dataframe.
 
 #### Syntax
 
-`python
+`
 ale_read_parser(ale_file)
 `
 
@@ -41,7 +38,13 @@ ale_read_parser(ale_file)
 
 #### Return Value
 
-Returns a tuple containing the header dictionary and the pandas dataframe.
+- delim, headerdict, dataframe, ale_file = ale_read_parser(ale_path)
+
+Returns a tuple containing
+- delimiter type
+- header dictionary (not to be mistaken with the column-header)
+- pandas dataframe
+- file path of the ALE file (as input parameter for the 2nd Function)
 
 ### Function 2: ale_write_parser
 
@@ -51,15 +54,16 @@ Writes a pandas dataframe and a header dictionary to an ALE file.
 
 #### Syntax
 
-`python
-ale_write_parser(df, headerdict, save_path_and_name)
+`
+ale_rewrite(ale_path, delim, headerdict, dataframe)
 `
 
 #### Parameters
 
-- `df`: The pandas dataframe to write to the ALE file.
+- `dataframe`: The pandas dataframe to write to the ALE file.
 - `headerdict`: The header dictionary to write to the ALE file.
-- `save_path_and_name`: The file path and name where the ALE file will be saved.
+- `ale_path`: The file path and name where the ALE file will be saved.
+- `delim`: The delimiter type of the ALE file.
 
 ## Error Handling
 
