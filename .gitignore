@@ -9,6 +9,9 @@
 
 # Ignore INT
 ALE_Parser_INT.py
+ALE_Parser.py
 
 # Ignore Test-Files
 Test-Files/
+
+
