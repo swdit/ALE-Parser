@@ -75,7 +75,7 @@ The script includes error handling to validate the format of the ALE file during
 # Path to the ALE file
 
 from ALE_Parser import ale_read_parser, ale_rewrite
-import printme
+from printme import printme
 
 file = "your_ale_path.ale"
 

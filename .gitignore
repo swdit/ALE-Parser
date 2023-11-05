@@ -14,4 +14,8 @@ ALE_Parser_INT.py
 # Ignore Test-Files
 Test-Files/
 
+# Ignore
+imp_test.py
+
+
 

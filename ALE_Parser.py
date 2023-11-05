@@ -23,14 +23,12 @@ from datetime import datetime
 import pandas as pd
 import subprocess
 
-# get current time as string for individual file naming
-curts = datetime.now().strftime("%H%M%S")
+
 
 
 # FUNCTION 1: Read ALE file into pandas dataframe and headerdict
 def ale_read_parser(ale_file): #provide file (filepath) of the ale file as argument
     if not ale_file.split(".")[-1] == "ale":
-        ale_file.split(".")[-1]
         print(f"Error reading file {ale_file} - This is not a valid ALE-File")
         exit()
     with open (ale_file, 'r') as ale: # First Read of the Original ALE and Check for Delimiter Status
@@ -48,18 +46,18 @@ def ale_read_parser(ale_file): #provide file (filepath) of the ale file as argum
 
 
 
-    def ale_parser_headerlines(ale_file):
-        headerdict = {}
-        skiprows = []
+    def ale_parser_headerlines(ale_file_infu):
+        headerdict_infu = {}
+        skiprows_infu = []
         headskip = False
-        with open(ale_file, 'r') as ale: # 2nd Read of Original ALE and to red the Headerlines
-            for idx, line in enumerate(ale):
+        with open(ale_file_infu, 'r') as ale_infu: # 2nd Read of Original ALE and to red the Headerlines
+            for idx, line in enumerate(ale_infu):
                 # if headskip is False, check for header lines (needed to skip Column-Names as those shall end up in the data frame)
-                if headskip == False:
+                if not headskip:
                     # add idx and line to headerdict
-                    headerdict[idx] = line
+                    headerdict_infu[idx] = line
                     # add idx to skiprows list
-                    skiprows.append(idx)
+                    skiprows_infu.append(idx)
                 headskip = False
                 if "Column" in line:
                     headskip = True
@@ -67,10 +65,10 @@ def ale_read_parser(ale_file): #provide file (filepath) of the ale file as argum
                     break
 
 
-        return headerdict, skiprows
+        return headerdict_infu, skiprows_infu
 
-    def getdataframe(ale_file, delim):
-        df = pd.read_csv(ale_file, delimiter=delim, skiprows=skiprows)
+    def getdataframe(ale_file_int, delim_infu):
+        df = pd.read_csv(ale_file_int, delimiter=delim_infu, skiprows=skiprows)
         return df
 
 
