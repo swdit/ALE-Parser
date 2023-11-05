@@ -33,15 +33,32 @@ def ale_read_parser(ale_file): #provide file (filepath) of the ale file as argum
         exit()
     with open (ale_file, 'r') as ale: # First Read of the Original ALE and Check for Delimiter Status
         firstline = ale.readline()
-        if "COMMAS" in firstline:
-            delim = ","
-            print ("This is a comma separated ALE file")
-        elif "TABS" in firstline:
-            delim = "\t"
-            print ("This is a tab separated ALE file")
+        scndline = ale.readline()
+        if not "Heading" in firstline:
+            if "COMMAS" in firstline:
+                delim = ","
+                print ("This is a comma separated ALE file")
+            elif "TABS" in firstline:
+                delim = "\t"
+                print ("This is a tab separated ALE file")
+            else:
+                print ("@DELIM - This is not a valid ALE file")
+                print (firstline)
+                exit()
+        elif "Heading" in firstline:
+            if "COMMAS" in scndline:
+                delim = ","
+                print ("This is a comma separated ALE file")
+            elif "TABS" in scndline:
+                delim = "\t"
+                print ("This is a tab separated ALE file")
+            else:
+                print ("@DELIM - This is not a valid ALE file")
+                print (firstline)
+                exit()
         else:
-            print ("@DELIM - This is not a valid ALE file")
-            print (firstline)
+            print (f"Firstline-Error - This is not a valid ALE file")
+            print ("firstline", firstline, "scndline", scndline)
             exit()
 
 
@@ -101,15 +118,17 @@ def ale_rewrite(ale_path, delim, headerdict, dataframe):
     with open(new_ale_path, 'w') as ale:
         # Write headerdict excluding last line
         for key in headerdict:
-            if "Data" in headerdict[key]:
-                break
             ale.write(headerdict[key])
+            if "Column" in headerdict[key]:
+                break
 
         # Write column names of dataframe
         ale.write(delim.join(dataframe.columns) + "\n")
 
         # Write "Data" line
+        ale.write("\n")
         ale.write("Data\n")
+
 
         # Write content of dataframe excluding column names
         dataframe.to_csv(ale, sep=delim, index=False, header=False)
