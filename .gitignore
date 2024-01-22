@@ -10,6 +10,10 @@
 # Ignore INT
 ALE_Parser_INT.py
 ALE_Parser_INT2.py
+ALE_Parser_INT3.py
+
+# Ignore BU
+ALE_Parser_BU1.py
 
 # Ignore Test-Files
 Test-Files/
@@ -17,6 +21,9 @@ Test-Files/
 # Ignore Testfiles
 imp_test.py
 modul_test1.py
+modul_test2.py
+modul_test2.py
+singlecheck1.py
 
 
 
